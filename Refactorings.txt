@@ -1,0 +1,3 @@
+Refactoring 1, extract class
+Created a menu class to house all the expected types of menus
+this removed code from greeter method, and places it more appropriately in the Menu Class
