@@ -37,4 +37,6 @@ public class UserInterfaceUnitTests {
 		int testInt = 5;
 		assertEquals(testInt, UI.getChoice());
 	}
+	
+	
 }
