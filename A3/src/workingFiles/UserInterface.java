@@ -103,7 +103,7 @@ public class UserInterface {
 	}
 
 	private void setPrimitiveArrayMenuItems() {
-		//TODO fill in this method next
+		// TODO fill in this method next
 	}
 
 	/**
@@ -121,7 +121,6 @@ public class UserInterface {
 
 			captureChoice(max);
 		}
-		in.close();
 	}
 
 	/**
