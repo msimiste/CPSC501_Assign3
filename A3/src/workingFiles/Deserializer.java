@@ -1,8 +1,11 @@
 package workingFiles;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +23,26 @@ public class Deserializer {
 	public Object deserialize(Document docIn) {
 
 		// Document doc = new Document();
+		String dir = System.getProperty("user.dir");
+		String separator = System.getProperty("file.separator");
+		String absPath = dir + separator;
+		
+		File outFile = new File(absPath,"slaveThread.xml");
+		
+		try {
+			OutputStream output = new FileOutputStream(outFile.getAbsolutePath());
+			XMLOutputter xmlOut = new XMLOutputter();
+			xmlOut.setFormat(Format.getPrettyFormat());
+			xmlOut.output(docIn, output);
+			/*output.write(docIn.toString().getBytes());
+			output.flush();*/
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		Element root = docIn.getRootElement();
 		List<Element> children = root.getChildren();

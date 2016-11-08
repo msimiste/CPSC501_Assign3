@@ -29,37 +29,37 @@ public class SlaveThread extends Thread {
 		String separator = System.getProperty("file.separator");
 		String absPath = dir + separator;
 		
-		File outFile = new File(absPath,"slaveThread.xml");
+		//File outFile = new File(absPath,"slaveThread.xml");
 		try {
 			InputStream input = clientSocket.getInputStream();
 			
 			
 			SAXBuilder builder = new SAXBuilder();
-
+			Document doc = builder.build(input);
 			// read the inputstream ie, the get request into a byte array
-			byte[] buf = new byte[32768];
-			int count = input.read(buf);
+			//byte[] buf = new byte[32768];
+			/*int count = input.read(buf);
 
 			System.out.println("SlaveThread Count" + count);
 
 			// extract the entire request into a string
 			if (count > 0) {
 				s += new String(buf, 0, count);
-			}
-			OutputStream output = new FileOutputStream(outFile.getAbsolutePath());
-			output.write(buf,0,count);
+			}*/
+			//OutputStream output = new FileOutputStream(outFile.getAbsolutePath());
+			/*output.write(buf,0,count);*/
 			
 			
 			System.out.println("line 41: " + s);
-			Document doc = builder.build(outFile);
+			//Document doc = builder.build(outFile);
 			Deserializer des = new Deserializer();
-			/*output.write(s.getBytes());
+			/*output.write(doc.toString().getBytes());
 			output.flush();*/
 			des.deserialize(doc);
 			Thread.sleep(500);
 			
 
-			output.close();
+			//output.close();
 			input.close();
 
 		} catch (IOException e) {
