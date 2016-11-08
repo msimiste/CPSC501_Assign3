@@ -10,6 +10,9 @@ public class Primitives extends ObjectType {
 	public Primitives(int in) {
 		ID = in;
 	}
+	public Primitives(){
+		
+	}
 
 	public int getID() {
 		return ID;

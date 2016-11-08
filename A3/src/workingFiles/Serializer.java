@@ -29,7 +29,7 @@ public class Serializer {
 		elem.addContent(elem1);
 		Class<?> cls = obj.getClass();
 		String name = cls.getName();
-		elem1.setAttribute("name", name);
+		elem1.setAttribute("class", name);
 		elem1.setAttribute("id", obj.hashCode() + "");
 		Field[] fields = cls.getDeclaredFields();
 

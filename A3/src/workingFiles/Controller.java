@@ -4,7 +4,7 @@ import org.jdom2.Document;
 
 public class Controller {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		UserInterface UI = new UserInterface();
 		UI.initializeStartMenu();
 		UI.greeter();
@@ -14,6 +14,7 @@ public class Controller {
 		Serializer serial = new Serializer();
 		Document doc = serial.serialize(objCreate.getObject());
 		serial.fileOutput(doc,2225);
+		Thread.sleep(500);
 		System.exit(0);		
 	}
 }
