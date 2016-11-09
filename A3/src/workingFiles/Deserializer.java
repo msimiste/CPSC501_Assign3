@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +35,7 @@ public class Deserializer {
 			XMLOutputter xmlOut = new XMLOutputter();
 			xmlOut.setFormat(Format.getPrettyFormat());
 			xmlOut.output(docIn, output);
-			/*output.write(docIn.toString().getBytes());
-			output.flush();*/
+			
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -45,7 +45,7 @@ public class Deserializer {
 		}
 
 		Element root = docIn.getRootElement();
-		List<Element> children = root.getChildren();
+		List<Element> children = root.getChildren();		
 		Object obj = null;
 
 		for (Element node : children) {
@@ -53,12 +53,25 @@ public class Deserializer {
 			String name = node.getName();
 			if (name.equalsIgnoreCase("object")) {
 				try {
-
+					List<Element> fields = node.getChildren();
+					System.out.println("Ho Wai Testing");
 					String cl2 = node.getAttributeValue("class");
 					int ind = cl2.indexOf('.') + 1;
 					String cl = cl2.substring(ind);
 					Class<?> cls = Class.forName(cl2);
 					obj = cls.newInstance();
+					for(Element field : fields){
+						cls = obj.getClass();
+						String fieldName = field.getName();
+						String fName = field.getAttributeValue("name");
+						Field f = cls.getField(fName);
+						field.getChild("value").getValue();
+						f.setAccessible(true);
+						Class<?> type = f.getType();
+						if(type.isPrimitive()){
+							
+						}
+					}
 					
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -67,6 +80,12 @@ public class Deserializer {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (NoSuchFieldException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SecurityException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

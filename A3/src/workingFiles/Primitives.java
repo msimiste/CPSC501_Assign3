@@ -2,22 +2,22 @@ package workingFiles;
 
 public class Primitives extends ObjectType {
 
-	private int ID;
+	//private int ID;
 	private int intVal;
 	private double doubleVal;
-	private String stringVal;
+	private char charVal;
 
-	public Primitives(int in) {
+	/*public Primitives(int in) {
 		ID = in;
-	}
+	}*/
 	public Primitives(){
 		
 	}
 
-	public int getID() {
+/*	public int getID() {
 		return ID;
 	}
-
+*/
 	public void setIntVal(int val) {
 		this.intVal = val;
 	}
@@ -26,8 +26,8 @@ public class Primitives extends ObjectType {
 		this.doubleVal = val;
 	}
 
-	public void setStringVal(String val) {
-		this.stringVal = val;
+	public void setCharval(char val) {
+		this.charVal = val;
 	}
 
 	public int getIntValue() {
@@ -38,7 +38,7 @@ public class Primitives extends ObjectType {
 		return this.doubleVal;
 	}
 
-	public String getStringValue() {
-		return this.stringVal;
+	public char getStringValue() {
+		return this.charVal;
 	}
 }

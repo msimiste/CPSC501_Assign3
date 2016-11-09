@@ -1,5 +1,6 @@
 package workingFiles;
 
+import java.io.CharConversionException;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -60,7 +61,7 @@ public class UserInterface {
 		Scanner in = new Scanner(System.in);
 		primitiveHelperI(o, in);
 		primitiveHelperD(o, in);
-		primitiveHelperS(o, in);
+		primitiveHelperC(o, in);
 		in.close();
 	}
 
@@ -91,15 +92,21 @@ public class UserInterface {
 		}
 	}
 
-	private void primitiveHelperS(ObjectCreator o, Scanner in) {
-		System.out.print("\tEnter null or a string value: ");
+	private void primitiveHelperC(ObjectCreator o, Scanner in) {
+		System.out.print("\tEnter null or a char value: ");
 		String a = in.next();
-		if (!(a.equals("null"))) {
-
-			((Primitives) o.getObject()).setStringVal(a);
-		} else {
-			((Primitives) o.getObject()).setStringVal(null);
+	
+		try {
+			if(a.length()>1){
+				throw new CharConversionException();
+			}
+			if (!(a.equals("null"))) {
+				((Primitives) o.getObject()).setCharval(a.charAt(0));
+			}
+		} catch (CharConversionException c) {
+			primitiveHelperC(o, in);
 		}
+		
 	}
 
 	private void setPrimitiveArrayMenuItems() {

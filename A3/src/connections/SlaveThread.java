@@ -24,42 +24,18 @@ public class SlaveThread extends Thread {
 
 	public void run() {
 
-		String s = "";
-		String dir = System.getProperty("user.dir");
-		String separator = System.getProperty("file.separator");
-		String absPath = dir + separator;
+		String s = "";	
 		
 		//File outFile = new File(absPath,"slaveThread.xml");
 		try {
-			InputStream input = clientSocket.getInputStream();
-			
+			InputStream input = clientSocket.getInputStream();		
 			
 			SAXBuilder builder = new SAXBuilder();
-			Document doc = builder.build(input);
-			// read the inputstream ie, the get request into a byte array
-			//byte[] buf = new byte[32768];
-			/*int count = input.read(buf);
-
-			System.out.println("SlaveThread Count" + count);
-
-			// extract the entire request into a string
-			if (count > 0) {
-				s += new String(buf, 0, count);
-			}*/
-			//OutputStream output = new FileOutputStream(outFile.getAbsolutePath());
-			/*output.write(buf,0,count);*/
-			
-			
-			System.out.println("line 41: " + s);
-			//Document doc = builder.build(outFile);
-			Deserializer des = new Deserializer();
-			/*output.write(doc.toString().getBytes());
-			output.flush();*/
+			Document doc = builder.build(input);	
+			System.out.println("line 41: " + s);			
+			Deserializer des = new Deserializer();		
 			des.deserialize(doc);
-			Thread.sleep(500);
-			
-
-			//output.close();
+			Thread.sleep(500);			
 			input.close();
 
 		} catch (IOException e) {
@@ -73,29 +49,4 @@ public class SlaveThread extends Thread {
 		}
 	}
 	
-
-	/**
-	 * 
-	* @param path The path which represents the folder structure on both locally and on the server
-	 * @param fileName The name of the file
-	 * @return a newly created file
-	 */		
-	private File makeFileAndDir(String path, String fileName) {
-		// concatenate the file path
-		String dir = System.getProperty("user.dir");
-		String separator = System.getProperty("file.separator");
-		String absPath = dir + separator + path;
-
-		File outFile = new File(absPath, fileName);
-
-		outFile.getParentFile().mkdirs();
-		try {
-			outFile.createNewFile();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return outFile;
-	}
 }

@@ -19,7 +19,7 @@ public class ObjectCreator {
 	public void createObject(int id) {
 		switch (id) {
 		case 1:
-			createPrimitivesObject(id);
+			createPrimitivesObject();
 			break;
 		case 2:
 		}
@@ -29,8 +29,8 @@ public class ObjectCreator {
 		return this.object;
 	}
 
-	private void createPrimitivesObject(int id) {
-		Primitives p = new Primitives(id);
+	private void createPrimitivesObject() {
+		Primitives p = new Primitives();
 		this.object = p;
 	}
 }
