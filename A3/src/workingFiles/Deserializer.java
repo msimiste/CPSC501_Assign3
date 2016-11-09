@@ -27,15 +27,16 @@ public class Deserializer {
 		String dir = System.getProperty("user.dir");
 		String separator = System.getProperty("file.separator");
 		String absPath = dir + separator;
-		
-		File outFile = new File(absPath,"slaveThread.xml");
-		
+
+		File outFile = new File(absPath, "slaveThread.xml");
+
 		try {
-			OutputStream output = new FileOutputStream(outFile.getAbsolutePath());
+			OutputStream output = new FileOutputStream(
+					outFile.getAbsolutePath());
 			XMLOutputter xmlOut = new XMLOutputter();
 			xmlOut.setFormat(Format.getPrettyFormat());
 			xmlOut.output(docIn, output);
-			
+
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -45,34 +46,70 @@ public class Deserializer {
 		}
 
 		Element root = docIn.getRootElement();
-		List<Element> children = root.getChildren();		
+		List<Element> children = root.getChildren();
+		Object obj = parseNodes(children);
+
+		
+				Visualizer v = new Visualizer();
+				v.inspect(obj, true);
+			
+		
+
+		File xmlFile = new File(System.getProperty("user.dir")
+				+ "\\deserialized.xml");
+		XMLOutputter xmlOutput = new XMLOutputter();
+
+		// display nice nice
+		xmlOutput.setFormat(Format.getPrettyFormat());
+
+		System.out.print("Deserialized: \n");
+		try {
+			xmlOutput.output(docIn, new FileWriter(xmlFile));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return obj;
+	}
+
+	private Object parseVal(String in,String val) {
+		Object o = new Object();
+		if (in.equalsIgnoreCase("int")) {
+			return Integer.parseInt(val);
+		}
+		else if(in.equalsIgnoreCase("double")){
+			return Double.parseDouble(val);
+		}
+		else if(in.equalsIgnoreCase("char")){
+			return val.charAt(0);
+		}
+		return o;
+	}
+
+	
+	private Object parseNodes(List<Element> children){
 		Object obj = null;
-
 		for (Element node : children) {
-
 			String name = node.getName();
 			if (name.equalsIgnoreCase("object")) {
 				try {
 					List<Element> fields = node.getChildren();
-					System.out.println("Ho Wai Testing");
 					String cl2 = node.getAttributeValue("class");
-					int ind = cl2.indexOf('.') + 1;
-					String cl = cl2.substring(ind);
 					Class<?> cls = Class.forName(cl2);
 					obj = cls.newInstance();
-					for(Element field : fields){
-						cls = obj.getClass();
-						String fieldName = field.getName();
+					for (Element field : fields) {
 						String fName = field.getAttributeValue("name");
-						Field f = cls.getField(fName);
-						field.getChild("value").getValue();
+						Field f = cls.getDeclaredField(fName);
+						String val = field.getChild("value").getValue();						
 						f.setAccessible(true);
 						Class<?> type = f.getType();
-						if(type.isPrimitive()){
-							
+						
+						if (type.isPrimitive()) {
+							Object oVal = parseVal(type.getName(),val);
+							f.set(obj, oVal);
 						}
 					}
-					
+
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -91,26 +128,7 @@ public class Deserializer {
 				}
 				
 				
-				Visualizer v = new Visualizer();
-				v.inspect(obj, true);
 			}
-		}
-
-		File xmlFile = new File(System.getProperty("user.dir")
-				+ "\\deserialized.xml");
-		XMLOutputter xmlOutput = new XMLOutputter();
-
-		// display nice nice
-		xmlOutput.setFormat(Format.getPrettyFormat());
-
-		System.out.print("Deserialized: \n");
-		try {
-			xmlOutput.output(docIn, new FileWriter(xmlFile));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return obj;
+		}return obj;
 	}
 }

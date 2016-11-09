@@ -80,7 +80,7 @@ public class Serializer {
 			System.out.println("Server started. Type \"quit\" to close.");
 
 			// Scanner keyboard = new Scanner(System.in);
-			String ipAddress = ("172.19.1.41");
+			String ipAddress = ("0.0.0.0");
 			Socket sock = new Socket(ipAddress, serverPort);
 			OutputStream out = sock.getOutputStream();
 			xmlOutput.output(doc, out);

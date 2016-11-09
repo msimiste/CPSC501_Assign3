@@ -15,6 +15,6 @@ public class Controller {
 		Document doc = serial.serialize(objCreate.getObject());
 		serial.fileOutput(doc,2225);
 		Thread.sleep(500);
-		//System.exit(0);		
+		System.exit(0);		
 	}
 }

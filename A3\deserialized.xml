@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serialize>
-  <object class="workingFiles.Primitives" id="798154996">
-    <field name="ID" declaringclass="workingFiles.Primitives">
-      <value>1</value>
-    </field>
+  <object class="workingFiles.Primitives" id="925858445">
     <field name="intVal" declaringclass="workingFiles.Primitives">
-      <value>10</value>
+      <value>101</value>
     </field>
     <field name="doubleVal" declaringclass="workingFiles.Primitives">
       <value>1.2</value>
     </field>
     <field name="charVal" declaringclass="workingFiles.Primitives">
-      <value>k</value>
+      <value>c</value>
     </field>
   </object>
 </serialize>
