@@ -56,6 +56,27 @@ public class Serializer {
 				}
 				e.addContent(val);
 			}
+			else if(t.isArray()){
+				
+			}
+			else{
+				Element ref = new Element("reference");
+				f.setAccessible(true);
+				try {
+					Object c = f.get(obj);
+					int hCode = c.hashCode();
+					ref.addContent(hCode+"");
+					serialize(c);
+				} catch (IllegalArgumentException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IllegalAccessException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				e.addContent(ref);
+				
+			}
 		}
 		return doc;
 	}

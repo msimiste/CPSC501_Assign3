@@ -45,10 +45,13 @@ public class UserInterface {
 		switch (id) {
 		case 1:
 			System.out.println("Primitives Menu");
-			setPrimitiveValues(o);
+			setPrimitiveValues(o.getObject());
 			break;
 		case 2:
-			setPrimitiveArrayMenuItems();
+			System.out.println("References Menu");
+			References r = (References) o.getObject();
+			setPrimitiveValues(r.getPrimReference());
+			break;
 		}
 	}
 
@@ -57,7 +60,7 @@ public class UserInterface {
 		captureChoice(menu.getSize());
 	}
 
-	private void setPrimitiveValues(ObjectCreator o) {
+	private void setPrimitiveValues(ObjectType o) {
 		Scanner in = new Scanner(System.in);
 		primitiveHelperI(o, in);
 		primitiveHelperD(o, in);
@@ -65,26 +68,26 @@ public class UserInterface {
 		in.close();
 	}
 
-	private void primitiveHelperI(ObjectCreator o, Scanner in) {
+	private void primitiveHelperI(ObjectType o, Scanner in) {
 
 		System.out.print("\tEnter null or an integer value: ");
 		String a = in.next();
 
 		try {
 			if (!(a.equals("null"))) {
-				((Primitives) o.getObject()).setIntVal(Integer.parseInt(a));
+				((Primitives) o).setIntVal(Integer.parseInt(a));
 			}
 		} catch (NumberFormatException n) {
 			primitiveHelperI(o, in);
 		}
 	}
 
-	private void primitiveHelperD(ObjectCreator o, Scanner in) {
+	private void primitiveHelperD(ObjectType o, Scanner in) {
 		System.out.print("\tEnter null or a double value: ");
 		String a = in.next();
 		try {
 			if (!(a.equals("null"))) {
-				((Primitives) o.getObject())
+				((Primitives) o)
 						.setDoubleVal(Double.parseDouble(a));
 			}
 		} catch (NumberFormatException n) {
@@ -92,7 +95,7 @@ public class UserInterface {
 		}
 	}
 
-	private void primitiveHelperC(ObjectCreator o, Scanner in) {
+	private void primitiveHelperC(ObjectType o, Scanner in) {
 		System.out.print("\tEnter null or a char value: ");
 		String a = in.next();
 	
@@ -101,7 +104,7 @@ public class UserInterface {
 				throw new CharConversionException();
 			}
 			if (!(a.equals("null"))) {
-				((Primitives) o.getObject()).setCharval(a.charAt(0));
+				((Primitives) o).setCharval(a.charAt(0));
 			}
 		} catch (CharConversionException c) {
 			primitiveHelperC(o, in);

@@ -19,12 +19,12 @@ public class CreateObjectUnitTests {
 		UI.objectValuesMenu(objCreate, objCreate.getChoice());
 
 		int testIntValue = 10;
-		String testStringValue = "This";
+		char testCharValue = 't';
 
 		Primitives p = (Primitives) objCreate.getObject();
 
 		assertEquals(testIntValue, p.getIntValue());
-		assertEquals(testStringValue, p.getStringValue());
+		assertEquals(testCharValue, p.getCharValue());
 	}
 
 	@Test
@@ -38,11 +38,11 @@ UserInterface UI = new UserInterface();
 
 		int testIntValue = 10;
 		
-		String testStringValue = "This";
+		char testCharValue = 't';
 
 		Primitives p = (Primitives) objCreate.getObject();
 
 		assertEquals(testIntValue, p.getIntValue());
-		assertNull(testStringValue, p.getStringValue());
+		//assertNull(testCharValue, p.getCharValue());
 	}
 }

@@ -100,11 +100,12 @@ public class Deserializer {
 					for (Element field : fields) {
 						String fName = field.getAttributeValue("name");
 						Field f = cls.getDeclaredField(fName);
-						String val = field.getChild("value").getValue();						
+											
 						f.setAccessible(true);
 						Class<?> type = f.getType();
 						
 						if (type.isPrimitive()) {
+							String val = field.getChild("value").getValue();	
 							Object oVal = parseVal(type.getName(),val);
 							f.set(obj, oVal);
 						}

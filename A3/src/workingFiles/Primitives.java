@@ -2,7 +2,7 @@ package workingFiles;
 
 public class Primitives extends ObjectType {
 
-	//private int ID;
+	private int ID;
 	private int intVal;
 	private double doubleVal;
 	private char charVal;
@@ -11,7 +11,7 @@ public class Primitives extends ObjectType {
 		ID = in;
 	}*/
 	public Primitives(){
-		
+		this.ID = this.hashCode();
 	}
 
 /*	public int getID() {
@@ -38,7 +38,7 @@ public class Primitives extends ObjectType {
 		return this.doubleVal;
 	}
 
-	public char getStringValue() {
+	public char getCharValue() {
 		return this.charVal;
 	}
 }

@@ -22,6 +22,8 @@ public class ObjectCreator {
 			createPrimitivesObject();
 			break;
 		case 2:
+			createReferencesObject();
+			break;
 		}
 	}
 
@@ -32,5 +34,9 @@ public class ObjectCreator {
 	private void createPrimitivesObject() {
 		Primitives p = new Primitives();
 		this.object = p;
+	}
+	private void createReferencesObject(){
+		References r = new References();
+		this.object = r;
 	}
 }
