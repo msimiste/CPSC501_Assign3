@@ -96,11 +96,14 @@ public class Deserializer {
 		for (Element node : children) {
 			String name = node.getName();
 			if (name.equalsIgnoreCase("object")) {
+				String clsName = node.getAttributeValue("class");
 				try {
 					List<Element> fields = node.getChildren();
 					String cl2 = node.getAttributeValue("class");
+					String arryAppend = "java.lang.String;";
+					
 					Class<?> cls = Class.forName(cl2);
-					obj = cls.newInstance();
+					
 					for (Element field : fields) {
 						String fName = field.getAttributeValue("name");
 						Field f = cls.getDeclaredField(fName);
@@ -109,14 +112,17 @@ public class Deserializer {
 						Class<?> type = f.getType();
 						
 						if (type.isPrimitive()) {
+							obj = cls.newInstance();
 							String val = field.getChild("value").getValue();	
 							Object oVal = parseVal(type.getName(),val);
 							f.set(obj, oVal);
 						}
 						else if(type.isArray()){
+							System.out.println("Type is array!!!!!!!!!!!!!!!!!");
 							
 						}
 						else{
+							obj = cls.newInstance();
 							String dc = field.getAttributeValue("declaringclass");
 							String id = field.getChildText("reference");
 							Object o = type.getName();

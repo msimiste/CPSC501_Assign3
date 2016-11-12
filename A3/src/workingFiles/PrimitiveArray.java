@@ -34,8 +34,8 @@ class PrimitiveArray extends ObjectType {
 	}
 
 	public void setArraySame(int val) {
-		for(int i : intArray){
-			i = val;
+		for(int i = 0; i<intArray.length; i++){
+			intArray[i] = val;
 		}
 	}
 	
