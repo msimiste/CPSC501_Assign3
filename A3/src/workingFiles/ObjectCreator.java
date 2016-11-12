@@ -16,27 +16,29 @@ public class ObjectCreator {
 		return choice;
 	}
 
-	public void createObject(int id) {
+	public ObjectType createObject(int id) {
 		switch (id) {
 		case 1:
-			createPrimitivesObject();
-			break;
+			return createPrimitivesObject();
 		case 2:
-			createReferencesObject();
-			break;
+			return createReferencesObject();
+			
 		}
+		return null;
 	}
 
 	public ObjectType getObject() {
 		return this.object;
 	}
 
-	private void createPrimitivesObject() {
+	private Primitives createPrimitivesObject() {
 		Primitives p = new Primitives();
 		this.object = p;
+		return p;
 	}
-	private void createReferencesObject(){
+	private References createReferencesObject(){
 		References r = new References();
 		this.object = r;
+		return r;
 	}
 }

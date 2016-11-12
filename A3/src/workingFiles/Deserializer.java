@@ -47,7 +47,8 @@ public class Deserializer {
 
 		Element root = docIn.getRootElement();
 		List<Element> children = root.getChildren();
-		Object obj = parseNodes(children);
+		Object obj = null;
+		obj = parseNodes(children,obj);
 
 		
 				Visualizer v = new Visualizer();
@@ -86,9 +87,12 @@ public class Deserializer {
 		return o;
 	}
 
+	/*private Object objectHelper(Object o){
+		
+	}*/
 	
-	private Object parseNodes(List<Element> children){
-		Object obj = null;
+	private Object parseNodes(List<Element> children,Object obj){
+		//Object obj = null;
 		for (Element node : children) {
 			String name = node.getName();
 			if (name.equalsIgnoreCase("object")) {
@@ -108,6 +112,23 @@ public class Deserializer {
 							String val = field.getChild("value").getValue();	
 							Object oVal = parseVal(type.getName(),val);
 							f.set(obj, oVal);
+						}
+						else if(type.isArray()){
+							
+						}
+						else{
+							String dc = field.getAttributeValue("declaringclass");
+							String id = field.getChildText("reference");
+							Object o = type.getName();
+							
+							//o = objectHelper(o);
+							f.set(obj,o);
+						/*	f.set(o,cl);
+							parseNodes(children, o);
+							f.set(o,cl)*/;
+							
+							
+							
 						}
 					}
 

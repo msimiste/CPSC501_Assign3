@@ -9,10 +9,10 @@ public class Controller {
 		UI.initializeStartMenu();
 		UI.greeter();
 		ObjectCreator objCreate = new ObjectCreator(UI.getChoice());	
-		objCreate.createObject(UI.getChoice());
+		ObjectType o = objCreate.createObject(UI.getChoice());
 		UI.objectValuesMenu(objCreate, objCreate.getChoice());	
 		Serializer serial = new Serializer();
-		Document doc = serial.serialize(objCreate.getObject());
+		Document doc = serial.serialize(o);
 		serial.fileOutput(doc,2225);
 		Thread.sleep(500);
 		//System.exit(0);		

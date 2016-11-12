@@ -16,17 +16,20 @@ import org.jdom2.output.XMLOutputter;
 
 public class Serializer {
 
+	private Document doc; 
 	public Serializer() {
-
+		doc = new Document();
+		Element elem = new Element("serialize");
+		doc.setRootElement(elem);
 	}
 
 	public Document serialize(Object obj) {
 
-		Document doc = new Document();
-		Element elem = new Element("serialize");
-		Element elem1 = new Element("object");
-		doc.setRootElement(elem);
-		elem.addContent(elem1);
+		
+		Element elem1 = new Element("object");	
+		Element root = doc.getRootElement();
+		root.addContent(elem1);
+		//elem.addContent(elem1);
 		Class<?> cls = obj.getClass();
 		String name = cls.getName();
 		elem1.setAttribute("class", name);
@@ -62,11 +65,13 @@ public class Serializer {
 			else{
 				Element ref = new Element("reference");
 				f.setAccessible(true);
+				String clName = f.getDeclaringClass().getName();
 				try {
 					Object c = f.get(obj);
 					int hCode = c.hashCode();
 					ref.addContent(hCode+"");
 					serialize(c);
+					
 				} catch (IllegalArgumentException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
