@@ -8,9 +8,11 @@ public class UserInterface {
 	private int choice;
 	private Menu startMenu;
 	private Menu menu = new Menu();
+	private Menu paMenu;
 
 	public UserInterface() {
-
+		initializeStartMenu();
+		initializePrimitiveArrayMenu();
 	}
 
 	/**
@@ -24,7 +26,7 @@ public class UserInterface {
 	/**
 	 * 
 	 */
-	public void initializeStartMenu() {
+	private void initializeStartMenu() {
 		this.startMenu = new Menu();
 		this.startMenu.setTitle("Object Creator Menu");
 		this.startMenu.addToMenu("exit");
@@ -51,6 +53,10 @@ public class UserInterface {
 			System.out.println("References Menu");
 			References r = (References) o.getObject();
 			setPrimitiveValues(r.getPrimReference());
+			break;
+		case 3:
+			PrimitiveArray pa = (PrimitiveArray) o.getObject();
+			setPrimitiveArrayItems(o.getObject());
 			break;
 		}
 	}
@@ -87,8 +93,7 @@ public class UserInterface {
 		String a = in.next();
 		try {
 			if (!(a.equals("null"))) {
-				((Primitives) o)
-						.setDoubleVal(Double.parseDouble(a));
+				((Primitives) o).setDoubleVal(Double.parseDouble(a));
 			}
 		} catch (NumberFormatException n) {
 			primitiveHelperD(o, in);
@@ -98,9 +103,9 @@ public class UserInterface {
 	private void primitiveHelperC(ObjectType o, Scanner in) {
 		System.out.print("\tEnter null or a char value: ");
 		String a = in.next();
-	
+
 		try {
-			if(a.length()>1){
+			if (a.length() > 1) {
 				throw new CharConversionException();
 			}
 			if (!(a.equals("null"))) {
@@ -109,19 +114,55 @@ public class UserInterface {
 		} catch (CharConversionException c) {
 			primitiveHelperC(o, in);
 		}
-		
+
 	}
 
-	private void setPrimitiveArrayMenuItems() {
-		// TODO fill in this method next
+	private void initializePrimitiveArrayMenu() {
+		paMenu = new Menu();
+		paMenu.setTitle("Array of Primitives Menu");
+		paMenu.addToMenu("exit");
+		paMenu.addToMenu("Auto-fill the array with random values ");
+		paMenu.addToMenu("Auto-fill the array with the same value ");
+		paMenu.addToMenu("Individually fill the array ");
+	}
+
+	private void setPrimitiveArrayItems(ObjectType o) {
+
+		Scanner in = new Scanner(System.in);
+		this.paMenu.displayMenu();
+		int choice = captureChoice(paMenu.getSize());
+
+		if (choice == 1) {
+			((PrimitiveArray) o).setArrayRandom();
+		} else if (choice == 2) {
+			int value = arrayChoice();
+			((PrimitiveArray) o).setArraySame(value);
+		}
+		else{
+			for(int i = 0; i<((PrimitiveArray)o).getArray().length; i++){
+				((PrimitiveArray)o).setArrayIndex(i, arrayChoice());
+			}
+		}
+	}
+
+	private int arrayChoice() {
+		Scanner in = new Scanner(System.in);
+		int choice;
+		try {
+			System.out.print("Enter value for array: ");
+			choice = Integer.parseInt(in.next());
+		} catch (NumberFormatException n) {
+			return arrayChoice();
+		}
+		return choice;
 	}
 
 	/**
 	 * Captures the user's first choice
 	 */
-	private void captureChoice(int max) {
+	private int captureChoice(int max) {
 		Scanner in = new Scanner(System.in);
-		System.out.print("Your Choice a number from 0 - " + max + " :");
+		System.out.print("Your Choice a number from 0 - " + (max-1) + " :");
 		try {
 			choice = Integer.parseInt(in.next());
 			if ((choice > max) || (choice < 0)) {
@@ -129,8 +170,9 @@ public class UserInterface {
 			}
 		} catch (NumberFormatException n) {
 
-			captureChoice(max);
+			return captureChoice(max);
 		}
+		return choice;
 	}
 
 	/**

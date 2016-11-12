@@ -22,7 +22,8 @@ public class ObjectCreator {
 			return createPrimitivesObject();
 		case 2:
 			return createReferencesObject();
-			
+		case 3:
+			return createPrimitiveArrayObject();			
 		}
 		return null;
 	}
@@ -40,5 +41,11 @@ public class ObjectCreator {
 		References r = new References();
 		this.object = r;
 		return r;
+	}
+	
+	private PrimitiveArray createPrimitiveArrayObject(){
+		PrimitiveArray pa = new PrimitiveArray();
+		this.object = pa;
+		return pa;
 	}
 }
