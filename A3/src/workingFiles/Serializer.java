@@ -19,7 +19,7 @@ public class Serializer {
 
 	public Serializer() {
 		doc = new Document();
-		Element elem = new Element("serialize");
+		Element elem = new Element("serialized");
 		doc.setRootElement(elem);
 	}
 
@@ -62,15 +62,25 @@ public class Serializer {
 				}
 				e.addContent(val);
 			} else if (t.isArray()) {
-				String nm = f.getName();				
+				String n = f.getName();
+				String dc = f.getDeclaringClass().getName();
+
+				elem1.addContent(e);
+				e.setAttribute("name", n);
+				e.setAttribute("declaringclass", dc);
+				Element ref = new Element("reference");
+				e.addContent(ref);
+				
 				Object arr;
 				try {
 					arr = f.get(obj);
+					ref.addContent(arr.hashCode()+"");
 					Element elem2 = new Element("object");
 					elem2.setAttribute("class", t.getName());
 					elem2.setAttribute("id",arr.hashCode()+"");
 					root.addContent(elem2);
 					int len = Array.getLength(arr);
+					elem2.setAttribute("length",len+"");
 					
 					for (int i = 0; i < Array.getLength(arr); i++) {
 						Element arrVal = new Element("value");
@@ -88,6 +98,13 @@ public class Serializer {
 				}
 
 			} else {
+				String n = f.getName();
+				String dc = f.getDeclaringClass().getName();
+
+				elem1.addContent(e);
+				e.setAttribute("name", n);
+				e.setAttribute("declaringclass", dc);
+				
 				Element ref = new Element("reference");
 				f.setAccessible(true);
 				String clName = f.getDeclaringClass().getName();

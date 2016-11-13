@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<serialize>
-  <object class="workingFiles.PrimitiveArray" id="1442407170">
+<serialized>
+  <object class="workingFiles.PrimitiveArray" id="1433867275">
     <field name="ID" declaringclass="workingFiles.PrimitiveArray">
-      <value>1442407170</value>
+      <value>1433867275</value>
+    </field>
+    <field name="intArray" declaringclass="workingFiles.PrimitiveArray">
+      <reference>866191240</reference>
     </field>
   </object>
-  <object class="[I" id="1392838282">
-    <value>6</value>
+  <object class="[I" id="866191240" length="10">
     <value>9</value>
+    <value>5</value>
     <value>9</value>
-    <value>7</value>
-    <value>4</value>
-    <value>6</value>
-    <value>2</value>
-    <value>0</value>
+    <value>3</value>
     <value>1</value>
-    <value>4</value>
+    <value>6</value>
+    <value>0</value>
+    <value>3</value>
+    <value>9</value>
+    <value>2</value>
   </object>
-</serialize>
+</serialized>

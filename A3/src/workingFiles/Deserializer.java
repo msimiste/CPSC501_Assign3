@@ -6,14 +6,18 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jdom2.Attribute;
+import org.jdom2.Content;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
+
 
 public class Deserializer {
 
@@ -46,9 +50,9 @@ public class Deserializer {
 		}
 
 		Element root = docIn.getRootElement();
-		List<Element> children = root.getChildren();
+		
 		Object obj = null;
-		obj = parseNodes(children,obj);
+		obj = parseNodes(root,obj);
 
 		
 				Visualizer v = new Visualizer();
@@ -84,6 +88,9 @@ public class Deserializer {
 		else if(in.equalsIgnoreCase("char")){
 			return val.charAt(0);
 		}
+		else if(in.equalsIgnoreCase("[I")){
+			return Integer.parseInt(val);
+		}
 		return o;
 	}
 
@@ -91,21 +98,110 @@ public class Deserializer {
 		
 	}*/
 	
-	private Object parseNodes(List<Element> children,Object obj){
+	
+	private Object parseNodes(Element root, Object obj){
+		//Object obj = null;
+		List<Element> children = root.getChildren();
+		Element first = children.get(0);
+		Class<?> cls;
+		try {
+			cls = Class.forName(first.getAttributeValue("class"));
+			obj = cls.newInstance();
+			List<Element> fields = first.getChildren();
+			for(Element field  : fields){
+				String fName = field.getAttributeValue("name");
+				Field f = cls.getDeclaredField(fName);
+				Class<?> type = f.getType();
+				f.setAccessible(true);
+				if (type.isPrimitive()) {
+					
+					String val = field.getChild("value").getValue();	
+					Object oVal = parseVal(type.getName(),val);
+					f.set(obj, oVal);
+				}
+				else if(type.isArray()){
+					System.out.println("Type is array!!!!!!!!!!!!!!!!!");
+					String arrRef = field.getChild("reference").getValue();
+					Element testElem = new Element("object");
+					String typeName = type.getName();
+					int len = Array.getLength(f.get(obj));
+					int index = children.indexOf(root.getChild("object").getAttribute("class"));
+					Element arrayElement = getArrElement(children,typeName,arrRef);
+					
+					List<Element> arrayValues = arrayElement.getChildren();
+					if(len == arrayValues.size()){
+						
+						for(int i =0; i<arrayValues.size(); i++){
+							String value = arrayValues.get(i).getValue();
+							Object oVal = parseVal(type.getName(),value);
+							Array.set(f.get(obj), i, oVal);
+						}
+					}
+				
+					
+				}
+				else{					
+					System.out.println("Type is a reference!!!!!!!!!!!!");
+				}
+			}
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		
+		return obj;
+	}
+	
+	private Element getArrElement(List<Element> list, String id1, String id2){
+		
+		for(int i =0; i<list.size(); i++){
+			Element tempEl = list.get(i);
+			boolean first = tempEl.getAttribute("class").getValue().equals(id1);
+			boolean second = tempEl.getAttribute("id").getValue().equals(id2);
+			if(first && second)
+				return tempEl;
+			
+		}
+		
+		return null;
+	}
+	
+	
+	/*private Object parseNodes(List<Element> children,Object obj){
 		//Object obj = null;
 		for (Element node : children) {
 			String name = node.getName();
-			if (name.equalsIgnoreCase("object")) {
-				String clsName = node.getAttributeValue("class");
+			if (name.equalsIgnoreCase("object")) { //remove?
+				//String clsName = node.getAttributeValue("class");
 				try {
 					List<Element> fields = node.getChildren();
 					String cl2 = node.getAttributeValue("class");
-					String arryAppend = "java.lang.String;";
+					//String arryAppend = "java.lang.String;";
 					
 					Class<?> cls = Class.forName(cl2);
 					
 					for (Element field : fields) {
 						String fName = field.getAttributeValue("name");
+						if((field.getAttributeValue("name")) != null){
+							 fName = field.getAttributeValue("name");
+						}
+						else{
+							fName = "[I";
+						}
+						
 						Field f = cls.getDeclaredField(fName);
 											
 						f.setAccessible(true);
@@ -129,9 +225,9 @@ public class Deserializer {
 							
 							//o = objectHelper(o);
 							f.set(obj,o);
-						/*	f.set(o,cl);
+							f.set(o,cl);
 							parseNodes(children, o);
-							f.set(o,cl)*/;
+							f.set(o,cl);
 							
 							
 							
@@ -158,5 +254,5 @@ public class Deserializer {
 				
 			}
 		}return obj;
-	}
+	}*/
 }

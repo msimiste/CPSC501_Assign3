@@ -141,7 +141,7 @@ public class UserInterface {
 		else{
 			for(int i = 0; i<((PrimitiveArray)o).getArray().length; i++){
 				((PrimitiveArray)o).setArrayIndex(i, arrayChoice());
-			}
+			}			
 		}
 	}
 
