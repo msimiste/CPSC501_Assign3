@@ -81,12 +81,23 @@ public class Serializer {
 					root.addContent(elem2);
 					int len = Array.getLength(arr);
 					elem2.setAttribute("length",len+"");
-					
+					Element arrVal;
 					for (int i = 0; i < Array.getLength(arr); i++) {
-						Element arrVal = new Element("value");
-						int indexValue = Array.getInt(arr, i);
-						arrVal.addContent(indexValue + "");
+						if(t.getName().contains("[L")){
+							arrVal = new Element("reference");
+							Object iv = Array.get(arr, i);
+							arrVal.addContent(iv.getClass().getName());
+							serialize(iv);
+						}else{
+							arrVal = new Element("value");
+							int indexValue = Array.getInt(arr, i);// todo this needs to be fixed for dynamic values
+							arrVal.addContent(indexValue + "");
+						}
+					
+						
+						
 						elem2.addContent(arrVal);
+						
 					}
 					
 				} catch (IllegalArgumentException e1) {

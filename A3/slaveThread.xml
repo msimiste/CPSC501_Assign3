@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serialized>
-  <object class="workingFiles.PrimitiveArray" id="1433867275">
-    <field name="ID" declaringclass="workingFiles.PrimitiveArray">
-      <value>1433867275</value>
+  <object class="workingFiles.ReferenceArray" id="1442407170">
+    <field name="ID" declaringclass="workingFiles.ReferenceArray">
+      <value>1442407170</value>
     </field>
-    <field name="intArray" declaringclass="workingFiles.PrimitiveArray">
-      <reference>866191240</reference>
+    <field name="objArr" declaringclass="workingFiles.ReferenceArray">
+      <reference>523429237</reference>
     </field>
   </object>
-  <object class="[I" id="866191240" length="10">
-    <value>9</value>
-    <value>5</value>
-    <value>9</value>
-    <value>3</value>
-    <value>1</value>
-    <value>6</value>
-    <value>0</value>
-    <value>3</value>
-    <value>9</value>
-    <value>2</value>
+  <object class="[LworkingFiles.ObjectType;" id="523429237" length="2">
+    <reference>workingFiles.Primitives</reference>
+    <reference>workingFiles.Primitives</reference>
+  </object>
+  <object class="workingFiles.Primitives" id="1028566121">
+    <field name="ID" declaringclass="workingFiles.Primitives">
+      <value>1028566121</value>
+    </field>
+    <field name="intVal" declaringclass="workingFiles.Primitives">
+      <value>10</value>
+    </field>
+    <field name="doubleVal" declaringclass="workingFiles.Primitives">
+      <value>1.2</value>
+    </field>
+    <field name="charVal" declaringclass="workingFiles.Primitives">
+      <value>y</value>
+    </field>
+  </object>
+  <object class="workingFiles.Primitives" id="1118140819">
+    <field name="ID" declaringclass="workingFiles.Primitives">
+      <value>1118140819</value>
+    </field>
+    <field name="intVal" declaringclass="workingFiles.Primitives">
+      <value>18</value>
+    </field>
+    <field name="doubleVal" declaringclass="workingFiles.Primitives">
+      <value>5.9</value>
+    </field>
+    <field name="charVal" declaringclass="workingFiles.Primitives">
+      <value>p</value>
+    </field>
   </object>
 </serialized>

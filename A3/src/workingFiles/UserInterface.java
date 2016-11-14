@@ -9,10 +9,14 @@ public class UserInterface {
 	private Menu startMenu;
 	private Menu menu = new Menu();
 	private Menu paMenu;
+	private Menu refArrMenu;
+	private Menu raSubMenu;
+	private Scanner in = new Scanner(System.in);
 
 	public UserInterface() {
 		initializeStartMenu();
 		initializePrimitiveArrayMenu();
+		initializeReferenceArrayMenu();
 	}
 
 	/**
@@ -58,6 +62,9 @@ public class UserInterface {
 			PrimitiveArray pa = (PrimitiveArray) o.getObject();
 			setPrimitiveArrayItems(o.getObject());
 			break;
+		case 4:
+			ReferenceArray ra = (ReferenceArray) o.getObject();
+			setReferenceArrayItems(o.getObject());
 		}
 	}
 
@@ -67,11 +74,11 @@ public class UserInterface {
 	}
 
 	private void setPrimitiveValues(ObjectType o) {
-		Scanner in = new Scanner(System.in);
+		//Scanner in = new Scanner(System.in);
 		primitiveHelperI(o, in);
 		primitiveHelperD(o, in);
 		primitiveHelperC(o, in);
-		in.close();
+		//in.close();
 	}
 
 	private void primitiveHelperI(ObjectType o, Scanner in) {
@@ -117,6 +124,15 @@ public class UserInterface {
 
 	}
 
+	private void initializeReferenceArrayMenu() {
+		refArrMenu = new Menu();
+		refArrMenu.setTitle("Reference Array Menu");
+		refArrMenu.addToMenu("exit");
+		refArrMenu.addToMenu("Fill the array with 1 type of referemce");
+		refArrMenu.addToMenu("Individually fill the array");
+
+	}
+
 	private void initializePrimitiveArrayMenu() {
 		paMenu = new Menu();
 		paMenu.setTitle("Array of Primitives Menu");
@@ -126,9 +142,16 @@ public class UserInterface {
 		paMenu.addToMenu("Individually fill the array ");
 	}
 
+	/*
+	 * private void initailizeRefArraySubMenu(){ raSubMenu = new Menu();
+	 * raSubMenu.setTitle("Reference Array Sub Menu");
+	 * 
+	 * }
+	 */
+
 	private void setPrimitiveArrayItems(ObjectType o) {
 
-		Scanner in = new Scanner(System.in);
+		//Scanner in = new Scanner(System.in);
 		this.paMenu.displayMenu();
 		int choice = captureChoice(paMenu.getSize());
 
@@ -137,16 +160,60 @@ public class UserInterface {
 		} else if (choice == 2) {
 			int value = arrayChoice();
 			((PrimitiveArray) o).setArraySame(value);
-		}
-		else{
-			for(int i = 0; i<((PrimitiveArray)o).getArray().length; i++){
-				((PrimitiveArray)o).setArrayIndex(i, arrayChoice());
-			}			
+		} else {
+			for (int i = 0; i < ((PrimitiveArray) o).getArray().length; i++) {
+				((PrimitiveArray) o).setArrayIndex(i, arrayChoice());
+			}
 		}
 	}
 
+	private void setReferenceArrayItems(ObjectType o) {
+		//Scanner in = new Scanner(System.in);
+		this.refArrMenu.displayMenu();
+		int choice = captureChoice(refArrMenu.getSize());
+		ReferenceArray ref = (ReferenceArray)o;
+		
+
+		int subChoice;
+		if (choice == 1) {
+			
+			
+			for(int i =0; i<ref.getArray().length; i++){
+				
+				greeter();			
+				ObjectCreator OC = new ObjectCreator(choice);
+				OC.createObject(OC.getChoice());
+				objectValuesMenu(OC,OC.getChoice());
+				//String sChoice = parseSubMenuChoice(subChoice);
+				ref.setSpecificValue(i,OC.getObject()); 
+			}
+			
+		} else if (choice == 2) {
+			for (int i = 0; i < ((ReferenceArray) o).getArray().length; i++) {
+
+			}
+		}
+	}
+
+	private String parseSubMenuChoice(int choice) {
+		switch (choice) {
+		case 1:
+			return "Primitives";
+		case 2:
+			return "PrimitiveArray";
+		case 3:
+			return "References";
+		case 4:
+			return "ReferenceArray";
+		case 5:
+			return "Collections";
+		}
+		return null;
+
+	}
+
 	private int arrayChoice() {
-		Scanner in = new Scanner(System.in);
+		//Scanner in = new Scanner(System.in);
 		int choice;
 		try {
 			System.out.print("Enter value for array: ");
@@ -161,10 +228,12 @@ public class UserInterface {
 	 * Captures the user's first choice
 	 */
 	private int captureChoice(int max) {
-		Scanner in = new Scanner(System.in);
-		System.out.print("Your Choice a number from 0 - " + (max-1) + " :");
+		Scanner th = new Scanner(System.in);
+		
+		System.out.print("Your Choice a number from 0 - " + (max - 1) + " :");
 		try {
-			choice = Integer.parseInt(in.next());
+			String temp = in.next();
+			choice = Integer.parseInt(temp);
 			if ((choice > max) || (choice < 0)) {
 				throw new NumberFormatException();
 			}
@@ -172,7 +241,9 @@ public class UserInterface {
 
 			return captureChoice(max);
 		}
+		
 		return choice;
+		
 	}
 
 	/**

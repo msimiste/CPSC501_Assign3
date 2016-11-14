@@ -1,20 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<serialize>
-  <object class="workingFiles.PrimitiveArray" id="1442407170">
-    <field name="ID" declaringclass="workingFiles.PrimitiveArray">
-      <value>1442407170</value>
+<serialized>
+  <object class="workingFiles.References" id="1028566121">
+    <field name="ID" declaringclass="workingFiles.References">
+      <value>1028566121</value>
+    </field>
+    <field name="prims" declaringclass="workingFiles.References">
+      <reference>1442407170</reference>
     </field>
   </object>
-  <object class="[I" id="681842940">
-    <value>18</value>
-    <value>18</value>
-    <value>18</value>
-    <value>18</value>
-    <value>18</value>
-    <value>18</value>
-    <value>18</value>
-    <value>18</value>
-    <value>18</value>
-    <value>18</value>
+  <object class="workingFiles.Primitives" id="1442407170">
+    <field name="ID" declaringclass="workingFiles.Primitives">
+      <value>1442407170</value>
+    </field>
+    <field name="intVal" declaringclass="workingFiles.Primitives">
+      <value>19</value>
+    </field>
+    <field name="doubleVal" declaringclass="workingFiles.Primitives">
+      <value>1.2</value>
+    </field>
+    <field name="charVal" declaringclass="workingFiles.Primitives">
+      <value>d</value>
+    </field>
   </object>
-</serialize>
+</serialized>
