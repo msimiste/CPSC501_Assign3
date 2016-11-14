@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serialized>
-  <object class="workingFiles.ReferenceArray" id="1442407170">
+  <object class="workingFiles.ReferenceArray" id="1433867275">
     <field name="ID" declaringclass="workingFiles.ReferenceArray">
-      <value>1442407170</value>
+      <value>1433867275</value>
     </field>
     <field name="objArr" declaringclass="workingFiles.ReferenceArray">
-      <reference>523429237</reference>
+      <reference>875827115</reference>
     </field>
   </object>
-  <object class="[LworkingFiles.ObjectType;" id="523429237" length="2">
-    <reference>workingFiles.Primitives</reference>
-    <reference>workingFiles.Primitives</reference>
+  <object class="[LworkingFiles.ObjectType;" id="875827115" length="2">
+    <reference>1744347043</reference>
+    <reference>1971489295</reference>
   </object>
-  <object class="workingFiles.Primitives" id="1028566121">
+  <object class="workingFiles.Primitives" id="1744347043">
     <field name="ID" declaringclass="workingFiles.Primitives">
-      <value>1028566121</value>
+      <value>1744347043</value>
     </field>
     <field name="intVal" declaringclass="workingFiles.Primitives">
       <value>10</value>
     </field>
     <field name="doubleVal" declaringclass="workingFiles.Primitives">
-      <value>1.2</value>
+      <value>1.5</value>
     </field>
     <field name="charVal" declaringclass="workingFiles.Primitives">
-      <value>y</value>
+      <value>o</value>
     </field>
   </object>
-  <object class="workingFiles.Primitives" id="1118140819">
+  <object class="workingFiles.Primitives" id="1971489295">
     <field name="ID" declaringclass="workingFiles.Primitives">
-      <value>1118140819</value>
+      <value>1971489295</value>
     </field>
     <field name="intVal" declaringclass="workingFiles.Primitives">
-      <value>18</value>
+      <value>10</value>
     </field>
     <field name="doubleVal" declaringclass="workingFiles.Primitives">
-      <value>5.9</value>
+      <value>1.5</value>
     </field>
     <field name="charVal" declaringclass="workingFiles.Primitives">
-      <value>p</value>
+      <value>7</value>
     </field>
   </object>
 </serialized>

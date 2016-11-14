@@ -86,7 +86,7 @@ public class Serializer {
 						if(t.getName().contains("[L")){
 							arrVal = new Element("reference");
 							Object iv = Array.get(arr, i);
-							arrVal.addContent(iv.getClass().getName());
+							arrVal.addContent(iv.hashCode()+"");
 							serialize(iv);
 						}else{
 							arrVal = new Element("value");

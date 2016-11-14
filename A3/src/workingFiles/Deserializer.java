@@ -112,24 +112,41 @@ public class Deserializer {
 					f.set(obj, oVal);
 				} else if (type.isArray()) {
 					System.out.println("Type is array!!!!!!!!!!!!!!!!!");
-					String arrRef = field.getChild("reference").getValue();
-					Element testElem = new Element("object");
-					String typeName = type.getName();
 					int len = Array.getLength(f.get(obj));
-					int index = children.indexOf(root.getChild("object")
-							.getAttribute("class"));
-					Element arrayElement = getElemByClassId(children, typeName,
-							arrRef);
+					List<Element> fieldChilds = field.getChildren();
+					for( Element c : fieldChilds){
+						
+						//String arrRef = field.getChild("reference").getValue();
+						String arrRef = c.getText();
+						
+						//Element testElem = new Element("object");
+						String typeName = type.getName();
+						
+						//int index = children.indexOf(root.getChild("object")
+								//.getAttribute("class"));
+						Element arrayElement = getElemByClassId(children, typeName,
+								arrRef);
 
-					List<Element> arrayValues = arrayElement.getChildren();
-					if (len == arrayValues.size()) {
+						List<Element> arrayValues = arrayElement.getChildren();
+						if (len == arrayValues.size()) {
 
-						for (int i = 0; i < arrayValues.size(); i++) {
-							String value = arrayValues.get(i).getValue();
-							Object oVal = parseVal(type.getName(), value);
-							Array.set(f.get(obj), i, oVal);
+							for (int i = 0; i < arrayValues.size(); i++) {															
+								if(type.getComponentType().isPrimitive()){
+									String value = arrayValues.get(i).getValue();
+									Object oVal = parseVal(type.getName(), value);	
+									Array.set(f.get(obj), i, oVal);
+								}
+								else{
+									Object testOb = parseReference(field,type,f,obj,children);
+									Array.set(f.get(obj), i, testOb);
+								}
+							}
 						}
+						
+						
 					}
+					
+					
 				} else {
 					System.out.println("Type is a reference!!!!!!!!!!!!");
 					String refRef = field.getChild("reference").getValue();
@@ -190,6 +207,30 @@ public class Deserializer {
 		}
 
 		return null;
+	}
+	
+	private Object parseReference(Element field, Class<?> type, Field f, Object obj, List<Element> children) throws IllegalArgumentException, IllegalAccessException, ClassNotFoundException, InstantiationException, NoSuchFieldException, SecurityException{
+		String refRef = field.getChild("reference").getValue();
+		String typeName = type.getName();
+		Object refOb = f.get(obj);
+		Element refVal = getElemByClassId(children,typeName,refRef);
+		List<Element> refValues = refVal.getChildren();
+		
+		for (int i = 0; i < refValues.size(); i++) {
+			String name = refValues.get(i)
+					.getAttributeValue("name");
+			String value = refValues.get(i).getChildText("value");
+			String dc = refValues.get(i).getAttributeValue("declaringclass");
+			Class<?> c = Class.forName(dc);
+			Object o = c.newInstance();
+			Field fld = c.getDeclaredField(name);
+			String nm = fld.getType().getName();
+			fld.setAccessible(true);
+			Object oVal = parseVal(nm, value);
+			fld.set(refOb, oVal);
+		}
+		
+		return refOb;
 	}
 
 	/*
