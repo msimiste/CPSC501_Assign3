@@ -1,23 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serialized>
-  <object class="workingFiles.PrimitiveArray" id="865113938">
-    <field name="ID" declaringclass="workingFiles.PrimitiveArray">
+  <object class="workingFiles.ReferenceArray" id="865113938">
+    <field name="ID" declaringclass="workingFiles.ReferenceArray">
       <value>865113938</value>
     </field>
-    <field name="intArray" declaringclass="workingFiles.PrimitiveArray">
-      <reference>523429237</reference>
+    <field name="objArr" declaringclass="workingFiles.ReferenceArray">
+      <reference>664740647</reference>
     </field>
   </object>
-  <object class="[I" id="523429237" length="10">
-    <value>2</value>
-    <value>0</value>
-    <value>3</value>
-    <value>8</value>
-    <value>9</value>
-    <value>1</value>
-    <value>9</value>
-    <value>5</value>
-    <value>7</value>
-    <value>7</value>
+  <object class="[LworkingFiles.ObjectType;" id="664740647" length="2">
+    <reference>1442407170</reference>
+    <reference>1028566121</reference>
+  </object>
+  <object class="workingFiles.Primitives" id="1442407170">
+    <field name="ID" declaringclass="workingFiles.Primitives">
+      <value>1442407170</value>
+    </field>
+    <field name="intVal" declaringclass="workingFiles.Primitives">
+      <value>10</value>
+    </field>
+    <field name="doubleVal" declaringclass="workingFiles.Primitives">
+      <value>1.456</value>
+    </field>
+    <field name="charVal" declaringclass="workingFiles.Primitives">
+      <value>o</value>
+    </field>
+  </object>
+  <object class="workingFiles.Primitives" id="1028566121">
+    <field name="ID" declaringclass="workingFiles.Primitives">
+      <value>1028566121</value>
+    </field>
+    <field name="intVal" declaringclass="workingFiles.Primitives">
+      <value>10</value>
+    </field>
+    <field name="doubleVal" declaringclass="workingFiles.Primitives">
+      <value>1.456</value>
+    </field>
+    <field name="charVal" declaringclass="workingFiles.Primitives">
+      <value>i</value>
+    </field>
   </object>
 </serialized>

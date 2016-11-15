@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serialized>
-  <object class="workingFiles.ReferenceArray" id="1433867275">
+  <object class="workingFiles.ReferenceArray" id="865113938">
     <field name="ID" declaringclass="workingFiles.ReferenceArray">
-      <value>1433867275</value>
+      <value>865113938</value>
     </field>
     <field name="objArr" declaringclass="workingFiles.ReferenceArray">
-      <reference>875827115</reference>
+      <reference>664740647</reference>
     </field>
   </object>
-  <object class="[LworkingFiles.ObjectType;" id="875827115" length="2">
-    <reference>1744347043</reference>
-    <reference>1971489295</reference>
+  <object class="[LworkingFiles.ObjectType;" id="664740647" length="2">
+    <reference>1442407170</reference>
+    <reference>1028566121</reference>
   </object>
-  <object class="workingFiles.Primitives" id="1744347043">
+  <object class="workingFiles.Primitives" id="1442407170">
     <field name="ID" declaringclass="workingFiles.Primitives">
-      <value>1744347043</value>
+      <value>1442407170</value>
     </field>
     <field name="intVal" declaringclass="workingFiles.Primitives">
       <value>10</value>
     </field>
     <field name="doubleVal" declaringclass="workingFiles.Primitives">
-      <value>1.5</value>
+      <value>1.456</value>
     </field>
     <field name="charVal" declaringclass="workingFiles.Primitives">
       <value>o</value>
     </field>
   </object>
-  <object class="workingFiles.Primitives" id="1971489295">
+  <object class="workingFiles.Primitives" id="1028566121">
     <field name="ID" declaringclass="workingFiles.Primitives">
-      <value>1971489295</value>
+      <value>1028566121</value>
     </field>
     <field name="intVal" declaringclass="workingFiles.Primitives">
       <value>10</value>
     </field>
     <field name="doubleVal" declaringclass="workingFiles.Primitives">
-      <value>1.5</value>
+      <value>1.456</value>
     </field>
     <field name="charVal" declaringclass="workingFiles.Primitives">
-      <value>7</value>
+      <value>i</value>
     </field>
   </object>
 </serialized>
