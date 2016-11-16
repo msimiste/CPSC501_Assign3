@@ -1,55 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serialized>
-  <object class="workingFiles.ReferenceArray" id="865113938">
-    <field name="ID" declaringclass="workingFiles.ReferenceArray">
-      <value>865113938</value>
+  <object class="workingFiles.Collections" id="1329552164">
+    <field name="ID" declaringclass="workingFiles.Collections">
+      <value>1329552164</value>
     </field>
-    <field name="objArr" declaringclass="workingFiles.ReferenceArray">
-      <reference>804564176</reference>
+    <field name="collect" declaringclass="workingFiles.Collections">
+      <reference>363771850</reference>
     </field>
   </object>
-  <object class="[LworkingFiles.ObjectType;" id="804564176" length="2">
-    <reference>1442407170</reference>
-    <reference>1118140819</reference>
+  <object class="java.util.ArrayList" id="363771850">
+    <field name="serialVersionUID" declaringclass="java.util.ArrayList">
+      <value>8683452581122892189</value>
+    </field>
+    <field name="DEFAULT_CAPACITY" declaringclass="java.util.ArrayList">
+      <value>10</value>
+    </field>
+    <field name="EMPTY_ELEMENTDATA" declaringclass="java.util.ArrayList">
+      <reference>1421795058</reference>
+    </field>
+    <field name="DEFAULTCAPACITY_EMPTY_ELEMENTDATA" declaringclass="java.util.ArrayList">
+      <reference>149928006</reference>
+    </field>
+    <field name="elementData" declaringclass="java.util.ArrayList">
+      <reference>2065951873</reference>
+    </field>
+    <field name="size" declaringclass="java.util.ArrayList">
+      <value>1</value>
+    </field>
+    <field name="MAX_ARRAY_SIZE" declaringclass="java.util.ArrayList">
+      <value>2147483639</value>
+    </field>
   </object>
-  <object class="workingFiles.PrimitiveArray" id="1442407170">
+  <object class="[Ljava.lang.Object;" id="1421795058" length="0" />
+  <object class="[Ljava.lang.Object;" id="149928006" length="0" />
+  <object class="[Ljava.lang.Object;" id="2065951873" length="1">
+    <reference>363771819</reference>
+  </object>
+  <object class="workingFiles.PrimitiveArray" id="363771819">
     <field name="ID" declaringclass="workingFiles.PrimitiveArray">
-      <value>1442407170</value>
+      <value>363771819</value>
     </field>
     <field name="intArray" declaringclass="workingFiles.PrimitiveArray">
-      <reference>1555009629</reference>
+      <reference>1791741888</reference>
     </field>
   </object>
-  <object class="[I" id="1555009629" length="10">
-    <value>0</value>
-    <value>1</value>
-    <value>9</value>
-    <value>6</value>
+  <object class="[I" id="1791741888" length="10">
     <value>5</value>
-    <value>6</value>
-    <value>5</value>
-    <value>5</value>
-    <value>5</value>
+    <value>3</value>
     <value>4</value>
-  </object>
-  <object class="workingFiles.PrimitiveArray" id="1118140819">
-    <field name="ID" declaringclass="workingFiles.PrimitiveArray">
-      <value>1118140819</value>
-    </field>
-    <field name="intArray" declaringclass="workingFiles.PrimitiveArray">
-      <reference>713338599</reference>
-    </field>
-  </object>
-  <object class="[I" id="713338599" length="10">
-    <value>8</value>
+    <value>6</value>
+    <value>9</value>
+    <value>0</value>
+    <value>2</value>
+    <value>6</value>
     <value>2</value>
     <value>8</value>
-    <value>1</value>
-    <value>7</value>
-    <value>4</value>
-    <value>1</value>
-    <value>7</value>
-    <value>8</value>
-    <value>0</value>
   </object>
 </serialized>

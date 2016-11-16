@@ -1,55 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <serialized>
-  <object class="workingFiles.ReferenceArray" id="865113938">
-    <field name="ID" declaringclass="workingFiles.ReferenceArray">
-      <value>865113938</value>
-    </field>
-    <field name="objArr" declaringclass="workingFiles.ReferenceArray">
-      <reference>804564176</reference>
-    </field>
-  </object>
-  <object class="[LworkingFiles.ObjectType;" id="804564176" length="2">
-    <reference>1442407170</reference>
-    <reference>1118140819</reference>
-  </object>
-  <object class="workingFiles.PrimitiveArray" id="1442407170">
+  <object class="workingFiles.PrimitiveArray" id="2129789493">
     <field name="ID" declaringclass="workingFiles.PrimitiveArray">
-      <value>1442407170</value>
+      <value>2129789493</value>
     </field>
     <field name="intArray" declaringclass="workingFiles.PrimitiveArray">
-      <reference>1555009629</reference>
+      <reference>668386784</reference>
     </field>
   </object>
-  <object class="[I" id="1555009629" length="10">
-    <value>0</value>
-    <value>1</value>
-    <value>9</value>
-    <value>6</value>
-    <value>5</value>
-    <value>6</value>
-    <value>5</value>
-    <value>5</value>
-    <value>5</value>
-    <value>4</value>
-  </object>
-  <object class="workingFiles.PrimitiveArray" id="1118140819">
-    <field name="ID" declaringclass="workingFiles.PrimitiveArray">
-      <value>1118140819</value>
-    </field>
-    <field name="intArray" declaringclass="workingFiles.PrimitiveArray">
-      <reference>713338599</reference>
-    </field>
-  </object>
-  <object class="[I" id="713338599" length="10">
-    <value>8</value>
-    <value>2</value>
-    <value>8</value>
-    <value>1</value>
+  <object class="[I" id="668386784" length="10">
     <value>7</value>
     <value>4</value>
+    <value>8</value>
     <value>1</value>
-    <value>7</value>
     <value>8</value>
     <value>0</value>
+    <value>5</value>
+    <value>7</value>
+    <value>7</value>
+    <value>8</value>
   </object>
 </serialized>

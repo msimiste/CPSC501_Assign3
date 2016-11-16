@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -165,6 +166,11 @@ public class Deserializer {
 							Object value = parseVal(f.getType().getName(), field.getChildText("value"));
 							f.set(ob, value);
 						}
+					}
+					if(f.get(ob) instanceof  Collection<?> ){
+						Object value = parseVal(f.getType().getName(), field.getChildText("collect"));
+						Object o = f.get(ob);
+						((Collection<ObjectType>)o).add((ObjectType) value);
 					}
 				}				
 				objects.put(id, ob);

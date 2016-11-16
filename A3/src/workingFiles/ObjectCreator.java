@@ -26,6 +26,8 @@ public class ObjectCreator {
 			return createPrimitiveArrayObject();
 		case 4:
 			return createReferenceArrayObject();
+		case 5:
+			return createCollectionObject();
 		}
 		return null;
 	}
@@ -56,5 +58,11 @@ public class ObjectCreator {
 		ReferenceArray ra = new ReferenceArray();
 		this.object = ra;
 		return ra;
+	}
+	
+	private Collections createCollectionObject(){
+		Collections co = new Collections();
+		this.object = co;
+		return co;
 	}
 }

@@ -1,3 +1,4 @@
+fe8373689ba7b98c72efe3bec65464d3563461fb Semi-Final submission more to do, just saving so far
 47aabf161bbf759ec04d4085e1894b158b4d88fa Refactoring, comments Refactoring, extract Method withing controller
 aa1b14d93b7d868aa5ed7a40eff986cc53c3aba3 Tested server on 2 different threads cant run cmd line, need to set classpath
 d8946e57d12549c7a0f47979ab1767efbd46ef49  first four objects working, need to clean up pushing to preserve working code

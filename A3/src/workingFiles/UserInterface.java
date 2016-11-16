@@ -10,12 +10,14 @@ public class UserInterface {
 	private Menu menu = new Menu();
 	private Menu paMenu;
 	private Menu refArrMenu;
+	private Menu collectMenu;
 	private Scanner in = new Scanner(System.in);
 
 	public UserInterface() {
 		initializeStartMenu();
 		initializePrimitiveArrayMenu();
 		initializeReferenceArrayMenu();
+		initializeCollectMenu();
 	}
 
 	/**
@@ -65,6 +67,11 @@ public class UserInterface {
 		case 4:
 			ReferenceArray ra = (ReferenceArray) o.getObject();
 			setReferenceArrayItems(ra);
+			break;
+			
+		case 5:
+			Collections co = (Collections) o.getObject();
+			setCollectionItems(co);
 			break;
 		}
 	}
@@ -123,12 +130,19 @@ public class UserInterface {
 		}
 
 	}
+	
+	private void initializeCollectMenu(){
+		collectMenu = new Menu();
+		collectMenu.setTitle("Collections Menu");
+		collectMenu.addToMenu("exit");
+		collectMenu.addToMenu("Add Object to Collection");
+	}
 
 	private void initializeReferenceArrayMenu() {
 		refArrMenu = new Menu();
 		refArrMenu.setTitle("Reference Array Menu");
 		refArrMenu.addToMenu("exit");
-		refArrMenu.addToMenu("Fill the array with 1 type of referemce");
+		refArrMenu.addToMenu("Fill the array with 1 type of reference");
 		refArrMenu.addToMenu("Individually fill the array");
 
 	}
@@ -180,6 +194,21 @@ public class UserInterface {
 			for (int i = 0; i < ((ReferenceArray) o).getArray().length; i++) {
 
 			}
+		}
+	}
+	
+	private void setCollectionItems(ObjectType o){
+		this.collectMenu.displayMenu();
+		int choice = captureChoice(collectMenu.getSize());
+		Collections co = (Collections) o;
+		if(choice == 0){return;}
+		else if(choice == 1){
+			greeter();
+			ObjectCreator OC = new ObjectCreator(this.getChoice());
+			OC.createObject(OC.getChoice());
+			objectValuesMenu(OC,OC.getChoice());
+			co.addToList(OC.getObject());
+			
 		}
 	}
 

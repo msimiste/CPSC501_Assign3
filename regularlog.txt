@@ -1,0 +1,136 @@
+commit fe8373689ba7b98c72efe3bec65464d3563461fb
+Author: Mike Simister <mikesimister@shaw.ca>
+Date:   Wed Nov 16 14:21:28 2016 -0700
+
+    Semi-Final submission
+    more to do, just saving so far
+
+commit 47aabf161bbf759ec04d4085e1894b158b4d88fa
+Author: Mike Simister <mikesimister@shaw.ca>
+Date:   Tue Nov 15 22:03:57 2016 -0700
+
+    Refactoring, comments
+    Refactoring, extract Method withing controller
+
+commit aa1b14d93b7d868aa5ed7a40eff986cc53c3aba3
+Author: Mike Simister <mikesimister@shaw.ca>
+Date:   Tue Nov 15 21:02:57 2016 -0700
+
+    Tested server on 2 different threads
+    cant run cmd line, need to set classpath
+
+commit d8946e57d12549c7a0f47979ab1767efbd46ef49
+Author: Mike Simister <mikesimister@shaw.ca>
+Date:   Tue Nov 15 20:10:25 2016 -0700
+
+     first four objects working, need to clean up
+    pushing to preserve working code
+
+commit 48fb349c9f35887e5a8ed1db9e37d6bf3ae11ce0
+Author: Mike Simister <mikesimister@shaw.ca>
+Date:   Mon Nov 14 23:15:27 2016 -0700
+
+    lots yet to do, deserialize is not working properly
+
+commit 6498c6f3b6e1c208f6068923d13992271ea6e7ce
+Author: Mike Simister <mikesimister@shaw.ca>
+Date:   Mon Nov 14 13:18:05 2016 -0700
+
+    Deserializing of ReferenceArray in progress
+    Transferring to laptop
+
+commit 1dbaf043efc458ca64ce3c67180860c1fbff084b
+Author: msimiste <mikesimister@shaw.ca>
+Date:   Mon Nov 14 11:59:37 2016 -0700
+
+    Serializer working for ReferenceArray
+
+commit 62b3991f89ab0b0f1b65784a5db043c832881290
+Author: Mike Simister <mikesimister@shaw.ca>
+Date:   Sat Nov 12 21:35:28 2016 -0700
+
+    primitives and array of primitives working end to end
+
+commit 9f4da2a0e09c142a16763972db7a35083b3cdffd
+Author: msimiste <mikesimister@shaw.ca>
+Date:   Sat Nov 12 13:18:44 2016 -0700
+
+    transferring to school computer, deserializer for Arrays is broken
+
+commit 38d4cc06fe93b76c3b2516ae8404535078524f6a
+Author: Mike Simister <mikesimister@shaw.ca>
+Date:   Fri Nov 11 21:44:25 2016 -0700
+
+    Arrays menu and population appears to be working, further testing required
+
+commit 551732edeb8c1a12bb9ba9068388c7e20a1899e2
+Author: msimiste <mikesimister@shaw.ca>
+Date:   Fri Nov 11 20:32:53 2016 -0700
+
+     transferring to school
+
+commit 74db340e53b44c6ef1be616d4a21b1ed86137d34
+Author: Mike Simister <mikesimister@shaw.ca>
+Date:   Wed Nov 9 22:36:24 2016 -0700
+
+    menu for Object with reference functional
+    serializing of Object with references semi-funtional, more testing required
+
+commit e43ef5f2532c5404e913756f30019e8d73d3ce02
+Author: msimiste <mikesimister@shaw.ca>
+Date:   Tue Nov 8 23:45:35 2016 -0700
+
+    Object with primitive fields 'Primitives' functioning properly from end to end on local machine
+
+commit 4fabe4592189a2709b9e83cca2368ced0943a8bb
+Author: Mike Simister <mikesimister@shaw.ca>
+Date:   Tue Nov 8 21:45:02 2016 -0700
+
+    transferring from school to laptop
+
+commit a60caf8c9915344f1ff680c427aadc82bfe0105c
+Author: Mike Simister <mikesimister@shaw.ca>
+Date:   Mon Nov 7 19:37:03 2016 -0700
+
+    removed file creation from the slavethread class
+
+commit e2fd2b7ca63cecf43eca8c89b0743053c17e387e
+Author: msimiste <mikesimister@shaw.ca>
+Date:   Mon Nov 7 18:52:44 2016 -0700
+
+    need to transfer code to school computer
+
+commit 48f2b1fd2b151226c2c0727744c02c5efa38cf7b
+Author: msimiste <mikesimister@shaw.ca>
+Date:   Sun Nov 6 01:59:52 2016 -0600
+
+    Serializing for 1 object 'Pirmitives' functioning
+    Socket streaming of serialized object functioning on local machine
+
+commit c03173f7fb1c2335ff63e12a8832deb1f6ef11e3
+Author: msimiste <mikesimister@shaw.ca>
+Date:   Sat Nov 5 03:03:13 2016 -0600
+
+    UI, ObjectCreator, UnitTests all working for first Object type
+    user is prompted for values for the Primitives object
+
+commit 4b8404a79bfd78d8f64a25d5f004465e7753b1ae
+Author: Mike Simister <mikesimister@shaw.ca>
+Date:   Thu Nov 3 19:44:36 2016 -0600
+
+    Refactoring, extract class, extract method
+    created class Menu
+
+commit 1a03a3adc6153e33a8df35f8f90df656fd59f899
+Author: msimiste <mikesimister@shaw.ca>
+Date:   Wed Nov 2 23:57:55 2016 -0600
+
+    Initial UI working
+    Capturing user's choice properly
+    Unit/integration test passing
+
+commit 3aea30f50edadd0cbf3483dad9807c1954750669
+Author: msimiste <mikesimister@shaw.ca>
+Date:   Wed Nov 2 22:48:33 2016 -0600
+
+    First commit, just getting started
