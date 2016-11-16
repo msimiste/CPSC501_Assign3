@@ -1,7 +1,5 @@
 package workingFiles;
 
-import connections.Server;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Array;
@@ -28,7 +26,6 @@ public class Serializer {
 		Element elem1 = new Element("object");
 		Element root = doc.getRootElement();
 		root.addContent(elem1);
-		// elem.addContent(elem1);
 		Class<?> cls = obj.getClass();
 		String name = cls.getName();
 		elem1.setAttribute("class", name);
@@ -70,36 +67,32 @@ public class Serializer {
 				e.setAttribute("declaringclass", dc);
 				Element ref = new Element("reference");
 				e.addContent(ref);
-				
+
 				Object arr;
 				try {
 					arr = f.get(obj);
-					ref.addContent(arr.hashCode()+"");
+					ref.addContent(arr.hashCode() + "");
 					Element elem2 = new Element("object");
 					elem2.setAttribute("class", t.getName());
-					elem2.setAttribute("id",arr.hashCode()+"");
+					elem2.setAttribute("id", arr.hashCode() + "");
 					root.addContent(elem2);
 					int len = Array.getLength(arr);
-					elem2.setAttribute("length",len+"");
+					elem2.setAttribute("length", len + "");
 					Element arrVal;
 					for (int i = 0; i < Array.getLength(arr); i++) {
-						if(t.getName().contains("[L")){
+						if (t.getName().contains("[L")) {
 							arrVal = new Element("reference");
 							Object iv = Array.get(arr, i);
-							arrVal.addContent(iv.hashCode()+"");
+							arrVal.addContent(iv.hashCode() + "");
 							serialize(iv);
-						}else{
+						} else {
 							arrVal = new Element("value");
-							int indexValue = Array.getInt(arr, i);// todo this needs to be fixed for dynamic values
+							int indexValue = Array.getInt(arr, i);
 							arrVal.addContent(indexValue + "");
 						}
-					
-						
-						
 						elem2.addContent(arrVal);
-						
 					}
-					
+
 				} catch (IllegalArgumentException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -115,10 +108,10 @@ public class Serializer {
 				elem1.addContent(e);
 				e.setAttribute("name", n);
 				e.setAttribute("declaringclass", dc);
-				
+
 				Element ref = new Element("reference");
 				f.setAccessible(true);
-				String clName = f.getDeclaringClass().getName();
+
 				try {
 					Object c = f.get(obj);
 					int hCode = c.hashCode();
@@ -133,50 +126,28 @@ public class Serializer {
 					e1.printStackTrace();
 				}
 				e.addContent(ref);
-
 			}
 		}
 		return doc;
 	}
 
 	public void fileOutput(Document doc, int serverPort) {
-		/*
-		 * File xmlFile = new File(System.getProperty("user.dir") +
-		 * "\\initialTest.xml");
-		 */
-
 		XMLOutputter xmlOutput = new XMLOutputter();
 
 		// display nice nice
 		xmlOutput.setFormat(Format.getPrettyFormat());
 		try {
-			/*
-			 * xmlOutput.output(doc, new
-			 * FileWriter(System.getProperty("user.dir") +
-			 * "\\initialTest.xml"));
-			 */
-			//Server server = new Server(serverPort);
 
-			//server.start();
-			System.out.println("Server started. Type \"quit\" to close.");
-
-			// Scanner keyboard = new Scanner(System.in);
 			String ipAddress = ("0.0.0.0");
 			Socket sock = new Socket(ipAddress, serverPort);
 			OutputStream out = sock.getOutputStream();
 			xmlOutput.output(doc, out);
-			System.out.println("Made it through "
-					+ sock.getInetAddress().getHostAddress());
-
-			//server.stop();
 			sock.close();
-			// System.exit(0);
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("File Saved!");
 
 	}
 }

@@ -13,14 +13,7 @@ class PrimitiveArray extends ObjectType {
 
 	public int getID() {
 		return ID;
-	}
-
-	public void initRandomValues(int value) {
-
-		for (int i : intArray) {
-			i = 10;
-		}
-	}
+	}	
 
 	public int[] getArray() {
 		return this.intArray;

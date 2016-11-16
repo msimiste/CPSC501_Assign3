@@ -25,7 +25,7 @@ public class Menu {
 		System.out.println(this.title);
 		for (String s : menu) {
 			System.out.println("\t" + s + ": " + "(" + (menu.indexOf(s)) + ")");
-		}		
+		}
 	}
 
 	public int getSize() {
