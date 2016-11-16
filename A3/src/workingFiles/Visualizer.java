@@ -163,11 +163,11 @@ public class Visualizer {
 				} else if (type.isArray()) {
 					int indexLength = Array.getLength(f.get(obj));
 					Object[] arr = new Object[indexLength];
-					if (!(f.getType().toString().contains("[L"))) {
+					//if (!(f.getType().toString().contains("[L"))) {
 						for (int i = 0; i < indexLength; i++) {
 							arr[i] = Array.get(f.get(obj), i);
 						}
-					}
+					//}
 					System.out.println("\tType: " + type.getComponentType());
 					System.out.println("\tLength: " + arr.length);
 					for (int i = 0; i < arr.length; i++) {

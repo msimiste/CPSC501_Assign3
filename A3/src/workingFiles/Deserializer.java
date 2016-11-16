@@ -5,11 +5,14 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.jdom2.Attribute;
 import org.jdom2.Content;
@@ -50,7 +53,8 @@ public class Deserializer {
 		Element root = docIn.getRootElement();
 
 		Object obj = null;
-		obj = parseNodes(root, obj);
+		// obj = parseNodes(root, obj);
+		obj = parseNodesTwo(root, obj);
 
 		Visualizer v = new Visualizer();
 		v.inspect(obj, true);
@@ -89,6 +93,143 @@ public class Deserializer {
 	 * }
 	 */
 
+	private Object parseNodesTwo(Element root, Object obj) {
+		Map<Integer, Object> objects = new HashMap<Integer, Object>();
+		List<Element> children = root.getChildren("object");
+		try {
+			xmlToHashMap(objects, children);
+			fillReferenceArrays(objects, children);
+			fillRegularArrays(objects, children);
+			obj = setObject(objects,children);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return obj;
+	}
+	
+	private Object setObject(Map<Integer,Object> objects, List<Element> children) throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchFieldException, SecurityException{
+		Object obj = null;
+		String className = children.get(0).getAttributeValue("class");
+		int id = Integer.parseInt(children.get(0).getAttributeValue("id"));
+		obj = objects.get(id);
+		List<Element> fields = children.get(0).getChildren();
+		Class cls = obj.getClass();		
+		for(Element field : fields){
+			String ref = field.getChildren().get(0).getName();
+			String fName = field.getAttributeValue("name");
+			
+			if(ref.contains("reference")){
+				int value = Integer.parseInt(field.getChild("reference").getValue());
+				Field f = cls.getDeclaredField(fName);
+				f.setAccessible(true);
+				f.set(obj, objects.get(value));
+			}
+
+		}
+		
+		return obj ;
+	}
+
+	private void fillRegularArrays(Map<Integer, Object> objects, List<Element> children) throws ClassNotFoundException {
+
+		for (Element child : children) {
+			String idStr = child.getAttributeValue("id");
+			int id = Integer.parseInt(idStr);
+			Class<?> cls = Class.forName(child.getAttributeValue("class"));
+			int id2 = cls.hashCode();
+			Object ob = null;
+
+			if ((!(cls.getName().contains("[L"))) && (cls.getName().contains("["))) {
+
+				int length = Integer.parseInt((child.getAttributeValue("length")));
+				ob = Array.newInstance(cls, length);
+				List<Element> fields = child.getChildren();
+				Object arr = Array.newInstance(cls.getComponentType(), length);
+				for (int i = 0; i < length; i++) {
+					Object value = parseVal(cls.getName(), fields.get(i).getText());
+					Array.set(arr, i, value);
+				}
+
+				objects.put(id, arr);
+			}
+
+		}
+
+	}
+
+	private void xmlToHashMap(Map<Integer, Object> objects, List<Element> children) throws ClassNotFoundException,
+			InstantiationException, IllegalAccessException, NoSuchFieldException, SecurityException {
+		for (Element child : children) {
+			String idStr = child.getAttributeValue("id");
+			int id = Integer.parseInt(idStr);
+			Class<?> cls = Class.forName(child.getAttributeValue("class"));
+			int id2 = cls.hashCode();
+			Object ob = null;
+			if (!(cls.getName().contains("["))) {
+				ob = cls.newInstance();
+				List<Element> fields = child.getChildren();
+				for (Element field : fields) {
+					String fName = field.getAttributeValue("name");
+					Field f = cls.getDeclaredField(fName);
+					f.setAccessible(true);
+					if (!f.getType().isArray()) {
+						String name = field.getChildren().get(0).getName();
+						if (name.equals("value")) {
+							Object value = parseVal(f.getType().getName(), field.getChildText("value"));
+							f.set(ob, value);
+						}
+
+						else if (name.equals("reference")) {
+
+						}
+
+					}
+
+				}
+				// children.remove(child);
+				objects.put(id, ob);
+			}
+
+		}
+	}
+
+	private void fillReferenceArrays(Map<Integer, Object> objects, List<Element> children)
+			throws ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchFieldException,
+			SecurityException {
+		for (Element child : children) {
+			String idStr = child.getAttributeValue("id");
+			int id = Integer.parseInt(idStr);
+			Class<?> cls = Class.forName(child.getAttributeValue("class"));
+
+			int id2 = cls.hashCode();
+			Object ob = null;
+			if ((cls.getName().contains("[L"))) {
+
+				int length = Integer.parseInt((child.getAttributeValue("length")));
+				ob = Array.newInstance(cls, length);
+				List<Element> fields = child.getChildren();
+				Object arr = Array.newInstance(cls.getComponentType(),length);
+				for (int i = 0; i < length; i++) {
+					int ref = Integer.parseInt(fields.get(i).getValue());
+					Array.set(arr, i, objects.get(ref));
+				}
+				
+				
+				
+				objects.put(id, arr);
+			}
+
+		}
+	}
+
 	private Object parseNodes(Element root, Object obj) {
 		// Object obj = null;
 		List<Element> children = root.getChildren();
@@ -119,18 +260,17 @@ public class Deserializer {
 							String value = arrayValues.get(i).getValue();
 							Object oVal = parseVal(type.getName(), value);
 							Array.set(f.get(obj), i, oVal);
-						}
-						else if(type.getComponentType().getName().contains("[L")){
-							List<Element> arrayValues = getElemByClassId(children,ref).getChildren();
+						} else if (type.getComponentType().getName().contains("[L")) {
+							List<Element> arrayValues = getElemByClassId(children, ref).getChildren();
 							String value = arrayValues.get(i).getValue();
 							Class<?> tmp = Class.forName(field.getAttributeValue("class"));
 							Object testOb = tmp.newInstance();
-							Array.set(testOb, i, getElemByClassId(children,ref).getAttributeValue("class"));
+							Array.set(testOb, i, getElemByClassId(children, ref).getAttributeValue("class"));
 							f.set(obj, testOb);
 						}
 					}
 
-					//Object refOb = searchAndSet(children, ref);
+					// Object refOb = searchAndSet(children, ref);
 
 				} else {
 					System.out.println("Type is a reference!!!!!!!!!!!!");
@@ -192,6 +332,16 @@ public class Deserializer {
 		}
 
 		return null;
+	}
+
+	private Object setPrimitive(Element field, Class<?> type, Object obj, Field f)
+			throws IllegalArgumentException, IllegalAccessException {
+		f.setAccessible(true);
+		String dClass = field.getAttributeValue("declaringclass");
+		String val = field.getChild("value").getValue();
+		Object oVal = parseVal(type.getName(), val);
+		f.set(obj, oVal);
+		return obj;
 	}
 
 	private Object searchAndSet(List<Element> children, String ref)

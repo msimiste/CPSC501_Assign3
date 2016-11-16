@@ -20,10 +20,10 @@
       <value>10</value>
     </field>
     <field name="doubleVal" declaringclass="workingFiles.Primitives">
-      <value>1.456</value>
+      <value>1.0</value>
     </field>
     <field name="charVal" declaringclass="workingFiles.Primitives">
-      <value>o</value>
+      <value>4</value>
     </field>
   </object>
   <object class="workingFiles.Primitives" id="1028566121">
@@ -34,10 +34,10 @@
       <value>10</value>
     </field>
     <field name="doubleVal" declaringclass="workingFiles.Primitives">
-      <value>1.456</value>
+      <value>10.0</value>
     </field>
     <field name="charVal" declaringclass="workingFiles.Primitives">
-      <value>i</value>
+      <value>1</value>
     </field>
   </object>
 </serialized>
