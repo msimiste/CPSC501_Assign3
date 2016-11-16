@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serialized>
+  <object class="workingFiles.Primitives" id="865113938">
+    <field name="ID" declaringclass="workingFiles.Primitives">
+      <value>865113938</value>
+    </field>
+    <field name="intVal" declaringclass="workingFiles.Primitives">
+      <value>10</value>
+    </field>
+    <field name="doubleVal" declaringclass="workingFiles.Primitives">
+      <value>1.0</value>
+    </field>
+    <field name="charVal" declaringclass="workingFiles.Primitives">
+      <value>1</value>
+    </field>
+  </object>
+</serialized>

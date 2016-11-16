@@ -155,9 +155,9 @@ public class Serializer {
 			 * FileWriter(System.getProperty("user.dir") +
 			 * "\\initialTest.xml"));
 			 */
-			Server server = new Server(serverPort);
+			//Server server = new Server(serverPort);
 
-			server.start();
+			//server.start();
 			System.out.println("Server started. Type \"quit\" to close.");
 
 			// Scanner keyboard = new Scanner(System.in);
@@ -168,7 +168,7 @@ public class Serializer {
 			System.out.println("Made it through "
 					+ sock.getInetAddress().getHostAddress());
 
-			server.stop();
+			//server.stop();
 			sock.close();
 			// System.exit(0);
 
