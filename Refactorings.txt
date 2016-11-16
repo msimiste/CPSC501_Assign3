@@ -1,3 +1,8 @@
-Refactoring 1, extract class
-Created a menu class to house all the expected types of menus
+4b8404a79bfd78d8f64a25d5f004465e7753b1ae - Refactoring 1, extract class Created a menu class to house all the expected types of menus 
 this removed code from greeter method, and places it more appropriately in the Menu Class
+
+47aabf161bbf759ec04d4085e1894b158b4d88fa - Refactoring 2 Removed comments and extracted a method whithin controller
+
+There are many more refactorings required within this code. However, parts of the code are still not functioning properly, and I ran out of time.
+
+

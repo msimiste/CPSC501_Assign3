@@ -19,6 +19,10 @@ public class ReferenceArray extends ObjectType {
 			objArr[i] = parseTypeValue(typeValue);
 		}
 	}
+	
+	public ReferenceArray getRefArrReference(){
+		return this;
+	}
 
 	public void setSpecificValue(int index, ObjectType o) {
 		objArr[index] = o;

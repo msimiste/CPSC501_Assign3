@@ -31,6 +31,9 @@ class PrimitiveArray extends ObjectType {
 			intArray[i] = val;
 		}
 	}
+	public PrimitiveArray getPrimArrReference(){
+		return this;
+	}
 	
 	public void setArrayIndex(int index, int value){
 		intArray[index] = value;

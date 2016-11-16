@@ -26,13 +26,12 @@ public class SlaveThread extends Thread {
 
 		String s = "";	
 		
-		//File outFile = new File(absPath,"slaveThread.xml");
+		
 		try {
-			InputStream input = clientSocket.getInputStream();		
+			InputStream input = clientSocket.getInputStream();	
 			
 			SAXBuilder builder = new SAXBuilder();
-			Document doc = builder.build(input);	
-			System.out.println("line 41: " + s);			
+			Document doc = builder.build(input);						
 			Deserializer des = new Deserializer();		
 			des.deserialize(doc);
 			Thread.sleep(500);			

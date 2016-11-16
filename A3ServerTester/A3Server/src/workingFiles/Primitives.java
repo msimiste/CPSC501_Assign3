@@ -7,17 +7,10 @@ public class Primitives extends ObjectType {
 	private double doubleVal;
 	private char charVal;
 
-	/*public Primitives(int in) {
-		ID = in;
-	}*/
-	public Primitives(){
+	public Primitives() {
 		this.ID = this.hashCode();
 	}
 
-/*	public int getID() {
-		return ID;
-	}
-*/
 	public void setIntVal(int val) {
 		this.intVal = val;
 	}

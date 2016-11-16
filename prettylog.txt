@@ -1,0 +1,20 @@
+47aabf161bbf759ec04d4085e1894b158b4d88fa Refactoring, comments Refactoring, extract Method withing controller
+aa1b14d93b7d868aa5ed7a40eff986cc53c3aba3 Tested server on 2 different threads cant run cmd line, need to set classpath
+d8946e57d12549c7a0f47979ab1767efbd46ef49  first four objects working, need to clean up pushing to preserve working code
+48fb349c9f35887e5a8ed1db9e37d6bf3ae11ce0 lots yet to do, deserialize is not working properly
+6498c6f3b6e1c208f6068923d13992271ea6e7ce Deserializing of ReferenceArray in progress Transferring to laptop
+1dbaf043efc458ca64ce3c67180860c1fbff084b Serializer working for ReferenceArray
+62b3991f89ab0b0f1b65784a5db043c832881290 primitives and array of primitives working end to end
+9f4da2a0e09c142a16763972db7a35083b3cdffd transferring to school computer, deserializer for Arrays is broken
+38d4cc06fe93b76c3b2516ae8404535078524f6a Arrays menu and population appears to be working, further testing required
+551732edeb8c1a12bb9ba9068388c7e20a1899e2  transferring to school
+74db340e53b44c6ef1be616d4a21b1ed86137d34 menu for Object with reference functional serializing of Object with references semi-funtional, more testing required
+e43ef5f2532c5404e913756f30019e8d73d3ce02 Object with primitive fields 'Primitives' functioning properly from end to end on local machine
+4fabe4592189a2709b9e83cca2368ced0943a8bb transferring from school to laptop
+a60caf8c9915344f1ff680c427aadc82bfe0105c removed file creation from the slavethread class
+e2fd2b7ca63cecf43eca8c89b0743053c17e387e need to transfer code to school computer
+48f2b1fd2b151226c2c0727744c02c5efa38cf7b Serializing for 1 object 'Pirmitives' functioning Socket streaming of serialized object functioning on local machine
+c03173f7fb1c2335ff63e12a8832deb1f6ef11e3 UI, ObjectCreator, UnitTests all working for first Object type user is prompted for values for the Primitives object
+4b8404a79bfd78d8f64a25d5f004465e7753b1ae Refactoring, extract class, extract method created class Menu
+1a03a3adc6153e33a8df35f8f90df656fd59f899 Initial UI working Capturing user's choice properly Unit/integration test passing
+3aea30f50edadd0cbf3483dad9807c1954750669 First commit, just getting started

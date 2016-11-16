@@ -59,11 +59,13 @@ public class UserInterface {
 			break;
 		case 3:
 			PrimitiveArray pa = (PrimitiveArray) o.getObject();
-			setPrimitiveArrayItems(o.getObject());
+			//setPrimitiveArrayItems(o.getObject());
+			setPrimitiveArrayItems(pa);
 			break;
 		case 4:
 			ReferenceArray ra = (ReferenceArray) o.getObject();
-			setReferenceArrayItems(o.getObject());
+			setReferenceArrayItems(ra);
+			break;
 		}
 	}
 
@@ -167,7 +169,7 @@ public class UserInterface {
 			for (int i = 0; i < ref.getArray().length; i++) {
 
 				greeter();
-				ObjectCreator OC = new ObjectCreator(choice);
+				ObjectCreator OC = new ObjectCreator(this.getChoice());
 				OC.createObject(OC.getChoice());
 				objectValuesMenu(OC, OC.getChoice());
 				// String sChoice = parseSubMenuChoice(subChoice);
